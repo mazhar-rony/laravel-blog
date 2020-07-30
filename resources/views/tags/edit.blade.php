@@ -5,18 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Category</div>
+                <div class="card-header">Edit Tag</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/categories/{{ $category->id }}/edit">
+                    <form method="POST" action="/tags/{{ $tag->id }}/edit">
                         @csrf
                         @method('patch')
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Category Name</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Tag Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ !empty(old('name')) ? old('name') : $category->name }}" >
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ !empty(old('name')) ? old('name') : $tag->name }}" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="5">{{ !empty(old('description')) ? old('description') : $category->description }}</textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="5">{{ !empty(old('description')) ? old('description') : $tag->description }}</textarea>
                                 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Update Category
+                                    Update Tag
                                 </button>
                             </div>
                         </div>

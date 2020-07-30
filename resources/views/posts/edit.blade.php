@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -9,11 +9,12 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Create New Post</div>
+                <div class="card-header">Edit Post</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/posts">
+                    <form method="POST" action="/posts/{{ $post->id }}/edit">
                         @csrf
+                        @method('patch')
 
                         <div class="form-group row">
                             <label for="title" class="col-md-2 col-form-label text-md-right">Title</label>
@@ -22,7 +23,7 @@
                                 <input id="title" type="text" 
                                 class="form-control @error('title') is-invalid @enderror" 
                                 name="title" 
-                                value="{{ old('title') }}" >
+                                value="{{ !empty(old('title')) ? old('title') : $post->title }}" >
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -39,9 +40,12 @@
                                 <select class="form-control @error('category') is-invalid @enderror" 
                                     name="category_id" id="category">
                                 <option selected disabled>Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" 
+                                            @if ($post->category_id == $category->id)
+                                                selected
+                                            @endif>{{ $category->name }}</option>
+                                    @endforeach
                                 </select>  
 
                                 @error('category')
@@ -61,7 +65,12 @@
                                     name="tag_id[]" id="tag_id" multiple>
                                 {{--  <option selected disabled>Select Tags</option>  --}}
                                 @foreach ($tags as $tag)
-                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                    <option value="{{ $tag->id }}" 
+                                        @foreach ($post->tags as $selected)
+                                            @if ($tag->id == $selected->id)
+                                                selected
+                                            @endif
+                                        @endforeach>{{ $tag->name }}</option>
                                 @endforeach
                                 </select>  
 
@@ -79,7 +88,7 @@
 
                             <div class="col-md-8">
                                 <textarea class="form-control @error('body') is-invalid @enderror" 
-                                name="body" id="body" rows="7">{{ old('body') }}</textarea>
+                                name="body" id="body" rows="7">{{ !empty(old('body')) ? old('body') : $post->body }}</textarea>
                                 
                                 @error('body')
                                     <span class="invalid-feedback" role="alert">
@@ -92,7 +101,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-2">
                                 <button type="submit" class="btn btn-primary">
-                                    Create Post
+                                    Update Post
                                 </button>
                             </div>
                         </div>
@@ -105,18 +114,12 @@
 @endsection
 
 @section('scripts')
-
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <script>
         $(function() {
             $('#tag_id').select2();
         });
     </script>
-
-    {{-- Note: made changes in app.blade.php file to render select 2 changes are...
-    From: <script src="{{ asset('js/app.js') }}" defer></script>
-    To: <script src="{{ asset('js/app.js') }}"></script> --}}
-
 @endsection
+
