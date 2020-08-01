@@ -1,0 +1,1 @@
+<img src='{{ asset("uploads/posts/$post->thumbnail") }}' alt="post thumb" width="100">

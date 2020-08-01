@@ -12,7 +12,7 @@
                 <div class="card-header">Edit Post</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/posts/{{ $post->id }}/edit">
+                    <form method="POST" action="/posts/{{ $post->id }}/edit" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
 
@@ -79,6 +79,26 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="thumbnail" class="col-md-2 col-form-label text-md-right">Thumbnail</label>
+
+                            <div class="col-md-8">
+                                <input id="thumbnail" type="file" 
+                                class="form-control @error('thumbnail') is-invalid @enderror" 
+                                name="thumbnail" 
+                                value="{{ old('thumbnail') }}" >
+
+                                @error('thumbnail')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                {{-- thumbnail_path() declared in Post Model file --}}
+                                <img src="{{$post->thumbnail_path()}}" alt="post_thumbnail" width="100" height="100" class="img-thumbnail mt-2">
 
                             </div>
                         </div>

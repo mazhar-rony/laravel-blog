@@ -12,7 +12,7 @@
                 <div class="card-header">Create New Post</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/posts">
+                    <form method="POST" action="/posts" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -33,18 +33,18 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="category" class="col-md-2 col-form-label text-md-right">Post Category</label>
+                            <label for="category_id" class="col-md-2 col-form-label text-md-right">Post Category</label>
 
                             <div class="col-md-8">
-                                <select class="form-control @error('category') is-invalid @enderror" 
-                                    name="category_id" id="category">
+                                <select class="form-control @error('category_id') is-invalid @enderror" 
+                                    name="category_id" id="category_id">
                                 <option selected disabled>Select Category</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                                 </select>  
 
-                                @error('category')
+                                @error('category_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -71,6 +71,23 @@
                                     </span>
                                 @enderror
 
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="thumbnail" class="col-md-2 col-form-label text-md-right">Thumbnail</label>
+
+                            <div class="col-md-8">
+                                <input id="thumbnail" type="file" 
+                                class="form-control @error('thumbnail') is-invalid @enderror" 
+                                name="thumbnail" 
+                                value="{{ old('thumbnail') }}" >
+
+                                @error('thumbnail')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

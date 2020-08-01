@@ -33,4 +33,11 @@ class HomeController extends Controller
             'catgories' => $categories
         ]);
     }
+
+    public function show(Post $post)
+    {
+        return view('home.show', [
+            'post' => $post
+        ]);
+    }
 }

@@ -34,9 +34,15 @@ Route:: post('/posts', 'PostsController@store');
 
 Route:: get('/posts/create', 'PostsController@create');
 
+Route:: get('/posts/{post}', 'HomeController@show');
+
 Route:: get('/posts/{post}/edit', 'PostsController@edit');
 
 Route:: patch('/posts/{post}/edit', 'PostsController@update');
+
+Route:: post('/posts/{post}/comments', 'CommentsController@store');
+
+Route:: get('/posts/{post}/liked', 'CommentsController@postLike');
 
 
 
