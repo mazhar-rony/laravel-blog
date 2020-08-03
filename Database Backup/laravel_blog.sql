@@ -58,12 +58,16 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `comments` */
 
 insert  into `comments`(`id`,`body`,`post_id`,`user_id`,`created_at`,`updated_at`) values 
-(1,'this is my first comment',2,1,'2020-07-31 00:46:13','2020-07-31 00:46:13');
+(1,'this is my first comment',2,1,'2020-07-31 00:46:13','2020-07-31 00:46:13'),
+(2,'I Like this post',1,2,'2020-08-03 04:21:38','2020-08-03 04:21:38'),
+(3,'this is my another comment',1,2,'2020-08-03 04:23:00','2020-08-03 04:23:00'),
+(4,'hiiiiiiiiiiiiiii',1,2,'2020-08-03 04:47:32','2020-08-03 04:47:32'),
+(5,'all subscribers will get email',1,3,'2020-08-03 05:18:57','2020-08-03 05:18:57');
 
 /*Table structure for table `likes` */
 
@@ -78,12 +82,15 @@ CREATE TABLE `likes` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `likes_likeable_type_likeable_id_index` (`likeable_type`,`likeable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `likes` */
 
 insert  into `likes`(`id`,`user_id`,`likeable_type`,`likeable_id`,`created_at`,`updated_at`) values 
-(1,2,'App\\Post',4,'2020-07-31 03:38:24','2020-07-31 03:38:24');
+(1,2,'App\\Post',4,'2020-07-31 03:38:24','2020-07-31 03:38:24'),
+(17,2,'App\\Post',1,'2020-08-03 04:16:21','2020-08-03 04:16:21'),
+(18,1,'App\\Post',1,'2020-08-03 05:17:16','2020-08-03 05:17:16'),
+(19,1,'App\\Comment',3,'2020-08-03 06:13:15','2020-08-03 06:13:15');
 
 /*Table structure for table `migrations` */
 
@@ -215,13 +222,14 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
 (1,'Adib','adib@gmail.com',NULL,'$2y$10$HHGGAbs/vBaDrvbGPrCo5.OjK1HMa5R8qPKQODrbMGbI2r5FEMwGi',NULL,'2020-07-31 01:39:21','2020-07-31 01:39:21'),
-(2,'Imran','imran@gmail.com',NULL,'$2y$10$CJupK.XHjJxyIU9w7MtNtuFwYTKqHNylCmStcimcvUSjIiGAsHlvi',NULL,'2020-07-31 01:42:01','2020-07-31 01:42:01');
+(2,'Imran','imran@gmail.com',NULL,'$2y$10$CJupK.XHjJxyIU9w7MtNtuFwYTKqHNylCmStcimcvUSjIiGAsHlvi',NULL,'2020-07-31 01:42:01','2020-07-31 01:42:01'),
+(3,'Araf','araf@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-08-03 05:18:15','2020-08-03 05:18:15');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

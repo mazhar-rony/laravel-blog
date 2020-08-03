@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -36,6 +37,27 @@ class CommentsController extends Controller
         ]);
 
         //return back()->with('success', 'You Liked This Post !');
+        return back();
+    }
+
+    public function commentLike(Comment $comment)
+    {
+        $like = $comment->likes()->where('user_id', auth()->id())->first();
+
+        if($like)
+        {
+            $like->delete();
+            return back();
+        }
+
+        $comment->likes()->create([
+            'user_id' => auth()->id()
+        ]);
+        
+        //$userName = "<b style='color:#3490DC'>".Auth::user()->name."</b>";//make html compatible in partials.success_message.blade.php
+        
+        //return back()->with('success', $userName . ' Liked This Comment');
+
         return back();
     }
 }

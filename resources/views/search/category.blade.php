@@ -7,7 +7,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-9">
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="card mb-5">
                     <div class="card-header">
                         @if ($post->thumbnail)
@@ -22,7 +22,9 @@
                         {{ Illuminate\Support\Str::limit($post->body, 200) }}
                     </div>
                 </div> 
-            @endforeach
+            @empty
+                <h1>No Post Found on this Category</h1>
+            @endforelse
         </div>
 
         <div class="col-md-3">

@@ -30,14 +30,17 @@ class HomeController extends Controller
 
         return view('home.index', [
             'posts' => $posts,
-            'catgories' => $categories
+            'categories' => $categories
         ]);
     }
 
     public function show(Post $post)
     {
+        $categories = Category::all();
+        
         return view('home.show', [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ]);
     }
 }

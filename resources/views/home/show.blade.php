@@ -93,10 +93,16 @@
                 </div>
             </div>
 
-            @foreach ($post->comments as $comment)
+            @foreach ($post->comments->sortByDesc('created_at') as $comment)
                 <div class="card mb-4">
                     <div class="card-header">
                         <b>{{ $comment->owner->name }}</b> - {{ $comment->created_at->diffForHumans() }}
+                        <b class="pull-right"> {{ $comment->likes->count() }}</b>
+                            <a href="/comments/{{ $comment->id }}/liked">
+                                
+                                <i class="fa fa-heart fa-lg pull-right" @if($comment->likedByCurrentUser()) style="color:#8a0303" @else style="color:#aaa9ad" @endif aria-hidden="true"></i>
+                               
+                            </a>
                     </div>
                     <div class="card-body">
                         {{ $comment->body }}
@@ -111,7 +117,13 @@
                 <div class="card-header">Category</div>
 
                 <div class="card-body">
-                    
+                    <ul class="list-group">
+                        @foreach ($categories as $category)
+                            <li class="list-group-item">
+                                <a href="/posts/{{ $category->id }}/category">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

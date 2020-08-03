@@ -40,9 +40,13 @@ Route:: get('/posts/{post}/edit', 'PostsController@edit');
 
 Route:: patch('/posts/{post}/edit', 'PostsController@update');
 
-Route:: post('/posts/{post}/comments', 'CommentsController@store');
+Route:: post('/posts/{post}/comments', 'CommentsController@store')->middleware('auth');
 
-Route:: get('/posts/{post}/liked', 'CommentsController@postLike');
+Route:: get('/posts/{post}/liked', 'CommentsController@postLike')->middleware('auth');
+
+Route:: get('/posts/{category}/category', 'SearchController@searchPostByCategory');
+
+Route:: get('/comments/{comment}/liked', 'CommentsController@commentLike')->middleware('auth');
 
 
 
