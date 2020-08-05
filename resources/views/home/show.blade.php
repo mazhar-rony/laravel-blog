@@ -20,6 +20,17 @@
                     @endif
                     
                     <a href="/posts/{{ $post->id }}"><strong>{{ $post->title }}</strong></a>
+                    <div class="pull-right">
+                        @foreach ($post->tags as $tag)
+                            @if ($loop->last)
+                                {{--  here search.name is Route Name  --}}
+                                <a href="{{ route('search.tag', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>
+                            @else
+                                {{--  here search.name is Route Name  --}}
+                                <a href="{{ route('search.tag', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>,&nbsp;
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
 
                 <div class="card-body">

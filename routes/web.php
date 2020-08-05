@@ -46,6 +46,9 @@ Route:: get('/posts/{post}/liked', 'CommentsController@postLike')->middleware('a
 
 Route:: get('/posts/{category}/category', 'SearchController@searchPostByCategory');
 
+//when using Route Name: <a href="{{ route('search.tag', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>
+Route:: get('/posts/{tag}/tag', 'SearchController@searchPostByTag')->name('search.tag');
+
 Route:: get('/comments/{comment}/liked', 'CommentsController@commentLike')->middleware('auth');
 
 
