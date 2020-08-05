@@ -26,21 +26,21 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $categories = Category::all();
+        //$categories = Category::all(); //View Composer Used in AppServiceProvider Instead of passing values
 
         return view('home.index', [
-            'posts' => $posts,
-            'categories' => $categories
+            'posts' => $posts
+            //'categories' => $categories //View Composer Used in AppServiceProvider Instead of passing values
         ]);
     }
 
     public function show(Post $post)
     {
-        $categories = Category::all();
+        //$categories = Category::all(); //View Composer Used in AppServiceProvider Instead of passing values
         
         return view('home.show', [
-            'post' => $post,
-            'categories' => $categories
+            'post' => $post
+            //'categories' => $categories //View Composer Used in AppServiceProvider Instead of passing values
         ]);
     }
 }
