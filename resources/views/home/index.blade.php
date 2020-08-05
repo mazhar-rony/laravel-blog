@@ -23,6 +23,7 @@
                     </div>
                 </div> 
             @endforeach
+            {{ $posts->links() }}
         </div>
 
         <div class="col-md-3">

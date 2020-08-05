@@ -101,7 +101,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -113,7 +113,8 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (6,'2020_07_29_043756_create_tags_table',2),
 (7,'2020_07_29_054417_create_post_tag_table',3),
 (8,'2020_07_31_001435_create_comments_table',4),
-(9,'2020_07_31_030233_create_likes_table',5);
+(9,'2020_07_31_030233_create_likes_table',5),
+(10,'2020_08_05_134228_update_users_table',6);
 
 /*Table structure for table `password_resets` */
 
@@ -152,9 +153,7 @@ insert  into `post_tag`(`id`,`post_id`,`tag_id`) values
 (8,2,4),
 (9,5,2),
 (10,5,3),
-(11,6,1),
 (12,6,5),
-(13,7,1),
 (14,7,2),
 (15,7,5);
 
@@ -178,10 +177,10 @@ CREATE TABLE `posts` (
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`title`,`body`,`thumbnail`,`status`,`category_id`,`user_id`,`created_at`,`updated_at`) values 
-(1,'Object Oriented Programming','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\r\nContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.','1.jpg',0,4,NULL,'2020-07-29 03:24:04','2020-07-30 06:38:40'),
+(1,'Object Oriented Programming','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\r\nContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.','1.jpg',1,4,NULL,'2020-07-29 03:24:04','2020-08-05 15:17:02'),
 (2,'Core C++ part 2','It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.','2.jpg',0,2,NULL,'2020-07-29 03:26:15','2020-07-30 04:25:50'),
 (4,'First Post','this is post body of \"First Post\"','4.jpg',0,4,NULL,'2020-07-29 08:46:44','2020-07-30 04:26:32'),
-(5,'Post with image','bla bla blaaaaaaaaa','5.jpg',0,5,NULL,'2020-07-30 03:01:49','2020-07-30 03:01:49'),
+(5,'Post with image','bla bla blaaaaaaaaa','5.jpg',1,5,NULL,'2020-07-30 03:01:49','2020-08-05 15:23:16'),
 (6,'Post with image 2','new post ...........','6.jpg',0,8,NULL,'2020-07-30 03:05:03','2020-07-30 03:41:15'),
 (7,'Hello World','This is for test purpose only','7.jpg',0,9,NULL,'2020-07-30 04:23:12','2020-07-30 04:23:12');
 
@@ -220,16 +219,21 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `user_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `profile_pic` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'Adib','adib@gmail.com',NULL,'$2y$10$HHGGAbs/vBaDrvbGPrCo5.OjK1HMa5R8qPKQODrbMGbI2r5FEMwGi',NULL,'2020-07-31 01:39:21','2020-07-31 01:39:21'),
-(2,'Imran','imran@gmail.com',NULL,'$2y$10$CJupK.XHjJxyIU9w7MtNtuFwYTKqHNylCmStcimcvUSjIiGAsHlvi',NULL,'2020-07-31 01:42:01','2020-07-31 01:42:01'),
-(3,'Araf','araf@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-08-03 05:18:15','2020-08-03 05:18:15');
+insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`,`user_type`,`profile_pic`,`date_of_birth`,`last_login`) values 
+(1,'Adib','adib@gmail.com',NULL,'$2y$10$HHGGAbs/vBaDrvbGPrCo5.OjK1HMa5R8qPKQODrbMGbI2r5FEMwGi',NULL,'2020-07-31 01:39:21','2020-07-31 01:39:21','user',NULL,NULL,NULL),
+(2,'Imran','imran@gmail.com',NULL,'$2y$10$CJupK.XHjJxyIU9w7MtNtuFwYTKqHNylCmStcimcvUSjIiGAsHlvi',NULL,'2020-07-31 01:42:01','2020-07-31 01:42:01','user',NULL,NULL,NULL),
+(3,'Araf','araf@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-08-03 05:18:15','2020-08-03 05:18:15','user',NULL,NULL,NULL),
+(4,'Mazhar','mazhar.rony@gmail.com',NULL,'$2y$10$ccB8NKPaBOEq3M47yBNwcefLFRuZ8qXYcUxWzr9GFjlE6H3nq9GqG',NULL,'2020-08-05 14:17:47','2020-08-05 14:17:47','admin',NULL,'1990-05-08',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

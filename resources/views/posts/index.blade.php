@@ -17,7 +17,7 @@
                             <th>Title</th>
                             <th>Created At</th>
                             <th>Posted By</th>
-                            <th colspan="2" class="text-center">Action</th>
+                            <th colspan="3" class="text-center">Action</th>
                         </tr>
                         @forelse ($posts as $post)
                             <tr>
@@ -33,6 +33,7 @@
  
                                          <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> 
                                  </td> 
+                                 <td class="text-center"><a href="{{url('/posts/'.$post->id.'/approve')}}" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approve</a></td>
                             </tr>
                         @empty
                          <tr>

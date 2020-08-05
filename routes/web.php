@@ -8,6 +8,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// 'admin' middleware applied in Categories Controller
+
 Route::get('/categories', 'CategoriesController@index');
 
 Route::post('/categories', 'CategoriesController@store');
@@ -17,6 +19,8 @@ Route::get('/categories/create', 'CategoriesController@create');
 Route::get('/categories/{category}/edit', 'CategoriesController@edit');
 
 Route::patch('/categories/{category}/edit', 'CategoriesController@update');
+
+// 'admin' middleware applied in Tags Controller
 
 Route::get('/tags', 'TagsController@index');
 
@@ -28,17 +32,19 @@ Route::get('/tags/{tag}/edit', 'TagsController@edit');
 
 Route::patch('/tags/{tag}/edit', 'TagsController@update');
 
-Route:: get('/posts', 'PostsController@index');
+Route:: get('/posts', 'PostsController@index')->middleware('admin');// middleware can also declare in constructor
 
-Route:: post('/posts', 'PostsController@store');
+Route:: post('/posts', 'PostsController@store')->middleware('admin');// middleware can also declare in constructor
 
-Route:: get('/posts/create', 'PostsController@create');
+Route:: get('/posts/create', 'PostsController@create')->middleware('admin');// middleware can also declare in constructor
 
 Route:: get('/posts/{post}', 'HomeController@show');
 
-Route:: get('/posts/{post}/edit', 'PostsController@edit');
+Route:: get('/posts/{post}/edit', 'PostsController@edit')->middleware('admin');
 
-Route:: patch('/posts/{post}/edit', 'PostsController@update');
+Route:: patch('/posts/{post}/edit', 'PostsController@update')->middleware('admin');
+
+Route:: get('/posts/{post}/approve', 'PostsController@approve')->middleware('admin');
 
 Route:: post('/posts/{post}/comments', 'CommentsController@store')->middleware('auth');
 

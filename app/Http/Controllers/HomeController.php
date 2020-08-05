@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::where('status', 1)->paginate(10);
+
         //$categories = Category::all(); //View Composer Used in AppServiceProvider Instead of passing values
 
         return view('home.index', [
@@ -36,6 +37,16 @@ class HomeController extends Controller
 
     public function show(Post $post)
     {
+        if(auth()->check())
+        {
+            if(!$post->status && auth()->user()->user_type != 'admin') return back();
+        }
+            
+        else
+        {
+            if(!$post->status) return back();
+        }
+           
         //$categories = Category::all(); //View Composer Used in AppServiceProvider Instead of passing values
         
         return view('home.show', [
