@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // declare 'date_of_birth' as Carbon Object
+    protected $dates = [
+        'date_of_birth'
+    ];
 }

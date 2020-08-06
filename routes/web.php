@@ -8,6 +8,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/profile', 'ProfileController@profile');
+
 // 'admin' middleware applied in Categories Controller
 
 Route::get('/categories', 'CategoriesController@index');
