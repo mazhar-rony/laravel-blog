@@ -10,6 +10,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/profile', 'ProfileController@profile');
 
+Route::get('/profile/edit', 'ProfileController@edit');
+
+Route::post('/profile/edit', 'ProfileController@update');
+
 // 'admin' middleware applied in Categories Controller
 
 Route::get('/categories', 'CategoriesController@index');

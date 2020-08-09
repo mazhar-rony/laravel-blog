@@ -39,6 +39,16 @@ class User extends Authenticatable
 
     // declare 'date_of_birth' as Carbon Object
     protected $dates = [
-        'date_of_birth'
+        'date_of_birth', 'last_login',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public function profile_pic_path()
+    {
+        return asset("uploads/users/$this->profile_pic");
+    }
 }
