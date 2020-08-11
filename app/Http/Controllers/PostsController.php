@@ -169,11 +169,23 @@ class PostsController extends Controller
 
     public function approve(Post $post)
     {
-        $post->update([
-            'status' => 1
-        ]);
-
-        return back()->with('success', 'This Post has been approved !');
+        if($post->status == 0)
+        {
+            $post->update([
+                'status' => 1
+            ]);
+    
+            return back()->with('success', 'This Post has been Approved !');
+        }
+        else
+        {
+            $post->update([
+                'status' => 0
+            ]);
+    
+            return back()->with('success', 'This Post has been Removed !');
+        }
+        
     }
 
     /**

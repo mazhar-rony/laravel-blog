@@ -41,7 +41,7 @@
                                 <img src="{{ $post->thumbnail_path() }}" alt="thumbnail">
                             @endif
                             <h2 style="color: darkred;">{{ $post->title }}</h2>
-                            <p>{{ $post->body }}</p>
+                            <p>{!! $post->body !!}</p>
                         </div>
                     {{-- </div> --}}
                 </div>

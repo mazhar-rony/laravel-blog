@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Category;
+use PDF;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -53,5 +54,16 @@ class HomeController extends Controller
             'post' => $post
             //'categories' => $categories //View Composer Used in AppServiceProvider Instead of passing values
         ]);
+    }
+
+    public function genReport()
+    {
+        $cat = Category::all();
+
+        $pdf = PDF::loadView('pdf.invoice', [
+            'cat' => $cat
+        ]);
+
+        return $pdf->download('invoice.pdf');
     }
 }

@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        {{ Illuminate\Support\Str::limit($post->body, 200) }}
+                        {!! Illuminate\Support\Str::limit($post->body, 200) !!}
                     </div>
                 </div> 
             @endforeach

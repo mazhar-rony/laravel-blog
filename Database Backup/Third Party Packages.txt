@@ -1,0 +1,5 @@
+laravel-dompdf
+https://github.com/barryvdh/laravel-dompdf
+
+Intervention image
+https://github.com/Intervention/image

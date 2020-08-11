@@ -33,7 +33,11 @@
  
                                          <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> 
                                  </td> 
-                                 <td class="text-center"><a href="{{url('/posts/'.$post->id.'/approve')}}" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approve</a></td>
+                                 <td class="text-center"><a href="{{url('/posts/'.$post->id.'/approve')}}" 
+                                    class="btn {{ ($post->status == 1) ? 'btn-secondary' : 'btn-success' }} btn-sm">
+                                    <i class="{{ ($post->status == 1) ? 'fa fa-close' : 'fa fa-check' }}"></i> 
+                                    {{ ($post->status == 1) ? 'Disapprove' : 'Approve' }}</a>
+                                </td>
                             </tr>
                         @empty
                          <tr>

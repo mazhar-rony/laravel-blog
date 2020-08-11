@@ -8,6 +8,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/pdf', 'HomeController@genReport');
+
 Route::get('/profile', 'ProfileController@profile');
 
 Route::get('/profile/edit', 'ProfileController@edit');

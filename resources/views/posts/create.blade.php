@@ -132,6 +132,10 @@
         });
     </script>
 
+    <script>
+        CKEDITOR.replace('body');
+    </script>
+
     {{-- Note: made changes in app.blade.php file to render select 2 changes are...
     From: <script src="{{ asset('js/app.js') }}" defer></script>
     To: <script src="{{ asset('js/app.js') }}"></script> --}}
