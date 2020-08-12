@@ -14,29 +14,30 @@
                     <table class="table table-striped table-bordered">
                         <tr>
                             <th>Id</th>
-                            <th>Title</th>
-                            <th>Created At</th>
-                            <th>Posted By</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Signup Date</th>
+                            <th>Last Login</th>
+                            <th>User Type</th>
                             <th colspan="3" class="text-center">Action</th>
                         </tr>
-                        @forelse ($posts as $post)
+                        @forelse ($users as $user)
                             <tr>
-                                 <td>{{ $post->id }}</td>
-                                 <td>{{ $post->title }}</td>
-                                 <td>{{ $post->created_at->diffForHumans() }}</td>
-                                 <td>{{ $post->user_id }}</td>
-                                 <td class="text-center"><a href="{{url('/posts/'.$post->id.'/edit')}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a></td>
+                                 <td>{{ $user->id }}</td>
+                                 <td>{{ $user->name }}</td>
+                                 <td>{{ $user->email }}</td>
+                                 <td>{{ $user->created_at->format('d-m-Y') }}</td>
+                                 <td>{{ $user->last_login->diffForHumans() }}</td>
+                                 <td>{{ $user->user_type }}</td>
+                                 <td class="text-center"><a href="{{url('/users/'.$user->id.'/edit')}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a></td>
                                  <td class="text-center">
-                                     <form action="/posts/{{$post->id}}" method="POST">
+                                     <form action="/users/{{$user->id}}" method="POST">
                                          @csrf
                                          @method('delete')
  
                                          <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> 
                                  </td> 
-                                 <td class="text-center"><a href="{{url('/posts/'.$post->id.'/approve')}}" 
-                                    class="btn {{ ($post->status == 1) ? 'btn-secondary' : 'btn-success' }} btn-sm">
-                                    <i class="{{ ($post->status == 1) ? 'fa fa-close' : 'fa fa-check' }}"></i> 
-                                    {{ ($post->status == 1) ? 'Disapprove' : 'Approve' }}</a>
+                                 <td class="text-center">
                                 </td>
                             </tr>
                         @empty
@@ -45,7 +46,7 @@
                          </tr
                         @endforelse
                     </table>
-                    {{ $posts->links() }}
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

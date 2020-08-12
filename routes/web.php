@@ -65,5 +65,7 @@ Route:: get('/posts/{tag}/tag', 'SearchController@searchPostByTag')->name('searc
 
 Route:: get('/comments/{comment}/liked', 'CommentsController@commentLike')->middleware('auth');
 
+Route:: get('/users', 'UsersController@index')->middleware('admin');
+
 
 
