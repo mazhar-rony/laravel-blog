@@ -23,12 +23,25 @@
                         </tr>
                         @forelse ($users as $user)
                             <tr>
-                                 <td>{{ $user->id }}</td>
+                                 <td id="user_id">{{ $user->id }}</td>
                                  <td>{{ $user->name }}</td>
                                  <td>{{ $user->email }}</td>
                                  <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                  <td>{{ $user->last_login->diffForHumans() }}</td>
-                                 <td>{{ $user->user_type }}</td>
+                                 <td>
+                                    {{--  @if ($user->user_type == 'admin')
+                                        {{ "Admin" }}
+                                    @elseif ($user->user_type == 'moderator')
+                                        {{ "Moderator" }}
+                                    @elseif ($user->user_type == 'user')
+                                        {{ "User" }}
+                                    @endif  --}}
+                                    <select name="user_type" class="btn btn-secondary" id="userType">
+                                        <option value="admin" @if ($user->user_type == 'admin') selected @endif>Admin</option>
+                                        <option value="moderator" @if ($user->user_type == 'moderator') selected @endif>Moderator</option>
+                                        <option value="user"  @if ($user->user_type == 'user')  selected @endif>User</option>
+                                    </select>
+                                 </td>
                                  <td class="text-center"><a href="{{url('/users/'.$user->id.'/edit')}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a></td>
                                  <td class="text-center">
                                      <form action="/users/{{$user->id}}" method="POST">
@@ -51,4 +64,32 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(function(){    
+
+        $('#userType').on('change',function(){
+            var getUserType = $(this).children("option:selected").val();
+            //alert(getUserType);
+            var user_id = $('#user_id').text();
+            $.ajax({
+                url: '/users/'+user_id,
+                method: 'PATCH',
+                data: getUserType,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function(res){
+                    console.log(res, "success");                    
+                    }
+                    
+                },
+
+                error: function(res){
+                    console.log(res);
+                }
+            });
+        });
+    });
+</script>
 @endsection

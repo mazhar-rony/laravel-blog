@@ -22,9 +22,9 @@
                         @forelse ($posts as $post)
                             <tr>
                                  <td>{{ $post->id }}</td>
-                                 <td>{{ $post->title }}</td>
+                                 <td><a href='{{asset("/posts/$post->id")}}'>{{ $post->title }}</a></td>
                                  <td>{{ $post->created_at->diffForHumans() }}</td>
-                                 <td>{{ $post->user_id }}</td>
+                                 <td>{{ $post->user->name }}</td>
                                  <td class="text-center"><a href="{{url('/posts/'.$post->id.'/edit')}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a></td>
                                  <td class="text-center">
                                      <form action="/posts/{{$post->id}}" method="POST">

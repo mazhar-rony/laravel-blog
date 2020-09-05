@@ -186,11 +186,11 @@ CREATE TABLE `posts` (
 insert  into `posts`(`id`,`title`,`body`,`thumbnail`,`status`,`category_id`,`user_id`,`created_at`,`updated_at`) values 
 (1,'Object Oriented Programming','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\r\nContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.','1.jpg',1,4,4,'2020-07-29 03:24:04','2020-08-05 15:17:02'),
 (2,'Core C++ part 2','It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.','2.jpg',1,2,2,'2020-07-29 03:26:15','2020-08-11 13:00:37'),
-(4,'First Post','this is post body of \"First Post\"','4.jpg',0,4,NULL,'2020-07-29 08:46:44','2020-07-30 04:26:32'),
+(4,'First Post','this is post body of \"First Post\"','4.jpg',0,4,1,'2020-07-29 08:46:44','2020-07-30 04:26:32'),
 (5,'Post with image','bla bla blaaaaaaaaa','5.jpg',1,5,4,'2020-07-30 03:01:49','2020-08-05 15:23:16'),
-(6,'Post with image 2','new post ...........','6.jpg',0,8,NULL,'2020-07-30 03:05:03','2020-07-30 03:41:15'),
+(6,'Post with image 2','new post ...........','6.jpg',0,8,3,'2020-07-30 03:05:03','2020-07-30 03:41:15'),
 (7,'Hello World','This is for test purpose only','7.jpg',0,9,2,'2020-07-30 04:23:12','2020-08-11 12:59:30'),
-(8,'Ck Editor','<h1><strong>Ck Editor</strong>&nbsp;</h1>\r\n\r\n<p><em><strong>1. <s>Old</s></strong></em></p>\r\n\r\n<p><span class=\"marker\">2. New</span></p>','8.jpg',1,14,NULL,'2020-08-11 13:24:50','2020-08-11 13:31:04');
+(8,'Ck Editor','<h1><strong>Ck Editor</strong>&nbsp;</h1>\r\n\r\n<p><em><strong>1. <s>Old</s></strong></em></p>\r\n\r\n<p><span class=\"marker\">2. New</span></p>','8.jpg',1,14,4,'2020-08-11 13:24:50','2020-08-11 13:31:04');
 
 /*Table structure for table `tags` */
 
@@ -238,10 +238,10 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`,`user_type`,`profile_pic`,`date_of_birth`,`last_login`) values 
-(1,'Adib','adib@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-07-31 01:39:21','2020-08-09 21:29:44','user','1.jpg','2006-07-13',NULL),
-(2,'Imran','imran@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-07-31 01:42:01','2020-08-09 21:51:13','user','2.jpg','2006-07-13','2020-07-31 01:42:01'),
-(3,'Araf','araf@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-08-03 05:18:15','2020-08-03 05:18:15','user',NULL,'2006-07-13',NULL),
-(4,'Mazhar','mazhar.rony@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-08-05 14:17:47','2020-08-09 20:55:46','admin','4.jpg','1990-05-08','2020-08-05 14:17:47');
+(1,'Adib','adib@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-07-31 01:39:21','2020-08-12 19:21:05','user','1.jpg','2006-07-13','2020-08-12 19:21:05'),
+(2,'Imran','imran@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-07-31 01:42:01','2020-09-05 03:35:54','user','2.jpg','2006-07-13','2020-09-05 03:35:54'),
+(3,'Araf','araf@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-08-03 05:18:15','2020-08-12 19:19:34','user',NULL,'2006-07-13','2020-08-12 19:19:34'),
+(4,'Mazhar','mazhar.rony@gmail.com',NULL,'$2y$10$OzkW.vFmF/WFxnJ6XlCp7.aOXpjBFJqj7rmtL.JXABxhLjF8x5usW',NULL,'2020-08-05 14:17:47','2020-09-05 03:36:16','admin','4.jpg','1990-05-08','2020-09-05 03:36:16');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

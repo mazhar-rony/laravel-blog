@@ -67,5 +67,7 @@ Route:: get('/comments/{comment}/liked', 'CommentsController@commentLike')->midd
 
 Route:: get('/users', 'UsersController@index')->middleware('admin');
 
+Route:: get('/users/{user}', 'UsersController@update')->middleware('admin');
+
 
 
